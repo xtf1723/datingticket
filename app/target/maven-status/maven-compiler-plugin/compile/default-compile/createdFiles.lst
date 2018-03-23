@@ -1,0 +1,4 @@
+com\yinghai\datingticket\app\interceptor\AppRequestInterceptor.class
+com\yinghai\datingticket\app\interceptor\AccessTokenInterceptor.class
+com\yinghai\datingticket\app\util\ValidateAPITokenUtil.class
+com\yinghai\datingticket\app\App.class
