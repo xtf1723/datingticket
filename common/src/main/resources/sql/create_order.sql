@@ -1,0 +1,21 @@
+CREATE TABLE `order` (
+  `order_id` int(11) NOT NULL AUTO_INCREMENT COMMENT '订单id',
+  `o_user_id` int(11) NOT NULL COMMENT '用户id',
+  `o_type` int(3) NOT NULL DEFAULT '1' COMMENT '订单类型，1为票，2为商品',
+  `o_order_no` varchar(255) NOT NULL COMMENT '订单编号',
+  `o_price` int(11) NOT NULL COMMENT '价格',
+  `o_qty` int(11) NOT NULL DEFAULT '1' COMMENT '数量',
+  `o_total_money` int(11) NOT NULL COMMENT '订单总金额',
+  `o_actual_money` int(11) NOT NULL COMMENT '实际支付金额',
+  `o_status` int(11) NOT NULL COMMENT '订单状态,1未支付2已支付3已确定4进行中5已完成998退款999已取消',
+  `o_pay_status` int(11) NOT NULL COMMENT '支付状态,1未支付2已支付997退款中998已退款999已取消',
+  `o_pay_type` int(11) DEFAULT NULL COMMENT '支付方式',
+  `o_pay_time` datetime DEFAULT NULL COMMENT '支付时间',
+  `o_create_time` datetime NOT NULL COMMENT '创建时间',
+  `o_update_time` datetime DEFAULT NULL COMMENT '更新时间',
+  `o_complete_time` datetime DEFAULT NULL COMMENT '完成时间',
+  `o_cancel_time` datetime DEFAULT NULL COMMENT '取消时间',
+  `o_cancel_type` int(11) DEFAULT '0' COMMENT '取消类型',
+  `o_cancel_reason` varchar(255) DEFAULT NULL COMMENT '取消理由',
+  PRIMARY KEY (`order_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='订单表'

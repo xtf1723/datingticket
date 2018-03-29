@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinghai.datingticket.common.dao.ImageMapper" >
+  <resultMap id="BaseResultMap" type="com.yinghai.datingticket.common.model.Image" >
+    <id column="img_id" property="imgId" jdbcType="INTEGER" />
+    <result column="i_type" property="iType" jdbcType="INTEGER" />
+    <result column="i_key_id" property="iKeyId" jdbcType="INTEGER" />
+    <result column="i_url" property="iUrl" jdbcType="VARCHAR" />
+    <result column="i_create_time" property="iCreateTime" jdbcType="TIMESTAMP" />
+    <result column="i_update_time" property="iUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="i_absolute" property="iAbsolute" jdbcType="VARCHAR" />
+    <result column="it_is_userd" property="itIsUserd" jdbcType="INTEGER" />
+    <result column="it_app_path" property="itAppPath" jdbcType="VARCHAR" />
+    <result column="it_size" property="itSize" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    img_id, i_type, i_key_id, i_url, i_create_time, i_update_time, i_absolute, it_is_userd, 
+    it_app_path, it_size
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from image
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from image
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yinghai.datingticket.common.model.Image" >
+    insert into image (img_id, i_type, i_key_id, 
+      i_url, i_create_time, i_update_time, 
+      i_absolute, it_is_userd, it_app_path, 
+      it_size)
+    values (#{imgId,jdbcType=INTEGER}, #{iType,jdbcType=INTEGER}, #{iKeyId,jdbcType=INTEGER}, 
+      #{iUrl,jdbcType=VARCHAR}, #{iCreateTime,jdbcType=TIMESTAMP}, #{iUpdateTime,jdbcType=TIMESTAMP}, 
+      #{iAbsolute,jdbcType=VARCHAR}, #{itIsUserd,jdbcType=INTEGER}, #{itAppPath,jdbcType=VARCHAR}, 
+      #{itSize,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinghai.datingticket.common.model.Image" >
+    insert into image
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="imgId != null" >
+        img_id,
+      </if>
+      <if test="iType != null" >
+        i_type,
+      </if>
+      <if test="iKeyId != null" >
+        i_key_id,
+      </if>
+      <if test="iUrl != null" >
+        i_url,
+      </if>
+      <if test="iCreateTime != null" >
+        i_create_time,
+      </if>
+      <if test="iUpdateTime != null" >
+        i_update_time,
+      </if>
+      <if test="iAbsolute != null" >
+        i_absolute,
+      </if>
+      <if test="itIsUserd != null" >
+        it_is_userd,
+      </if>
+      <if test="itAppPath != null" >
+        it_app_path,
+      </if>
+      <if test="itSize != null" >
+        it_size,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="imgId != null" >
+        #{imgId,jdbcType=INTEGER},
+      </if>
+      <if test="iType != null" >
+        #{iType,jdbcType=INTEGER},
+      </if>
+      <if test="iKeyId != null" >
+        #{iKeyId,jdbcType=INTEGER},
+      </if>
+      <if test="iUrl != null" >
+        #{iUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="iCreateTime != null" >
+        #{iCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iUpdateTime != null" >
+        #{iUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iAbsolute != null" >
+        #{iAbsolute,jdbcType=VARCHAR},
+      </if>
+      <if test="itIsUserd != null" >
+        #{itIsUserd,jdbcType=INTEGER},
+      </if>
+      <if test="itAppPath != null" >
+        #{itAppPath,jdbcType=VARCHAR},
+      </if>
+      <if test="itSize != null" >
+        #{itSize,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinghai.datingticket.common.model.Image" >
+    update image
+    <set >
+      <if test="iType != null" >
+        i_type = #{iType,jdbcType=INTEGER},
+      </if>
+      <if test="iKeyId != null" >
+        i_key_id = #{iKeyId,jdbcType=INTEGER},
+      </if>
+      <if test="iUrl != null" >
+        i_url = #{iUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="iCreateTime != null" >
+        i_create_time = #{iCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iUpdateTime != null" >
+        i_update_time = #{iUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iAbsolute != null" >
+        i_absolute = #{iAbsolute,jdbcType=VARCHAR},
+      </if>
+      <if test="itIsUserd != null" >
+        it_is_userd = #{itIsUserd,jdbcType=INTEGER},
+      </if>
+      <if test="itAppPath != null" >
+        it_app_path = #{itAppPath,jdbcType=VARCHAR},
+      </if>
+      <if test="itSize != null" >
+        it_size = #{itSize,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinghai.datingticket.common.model.Image" >
+    update image
+    set i_type = #{iType,jdbcType=INTEGER},
+      i_key_id = #{iKeyId,jdbcType=INTEGER},
+      i_url = #{iUrl,jdbcType=VARCHAR},
+      i_create_time = #{iCreateTime,jdbcType=TIMESTAMP},
+      i_update_time = #{iUpdateTime,jdbcType=TIMESTAMP},
+      i_absolute = #{iAbsolute,jdbcType=VARCHAR},
+      it_is_userd = #{itIsUserd,jdbcType=INTEGER},
+      it_app_path = #{itAppPath,jdbcType=VARCHAR},
+      it_size = #{itSize,jdbcType=VARCHAR}
+    where img_id = #{imgId,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -11,7 +11,7 @@ CREATE TABLE `ticket` (
   `t_loc_y` double DEFAULT NULL COMMENT '经度',
   `t_brief` varchar(510) DEFAULT NULL COMMENT '简介',
   `t_notes` varchar(510) DEFAULT NULL COMMENT '购票须知',
-  `t_details` varchar(1000) DEFAULT NULL COMMENT '详情',
+  `t_details` text DEFAULT NULL COMMENT '详情',
   `t_type` int(11) NOT NULL COMMENT '票的类型，1为无座位,2为有座位',
   `t_content_type` varchar(64) NOT NULL COMMENT '内容类型',
   `t_shelf` int(11) NOT NULL DEFAULT '1' COMMENT '上架状态，1表示未上架，2表示已上架，3表示进行中，4表示已过期，5表示已删除',

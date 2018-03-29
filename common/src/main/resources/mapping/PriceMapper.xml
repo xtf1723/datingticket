@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinghai.datingticket.common.dao.PriceMapper" >
+  <resultMap id="BaseResultMap" type="com.yinghai.datingticket.common.model.Price" >
+    <id column="price_id" property="priceId" jdbcType="INTEGER" />
+    <result column="p_ticket_id" property="pTicketId" jdbcType="INTEGER" />
+    <result column="p_ts_id" property="pTsId" jdbcType="INTEGER" />
+    <result column="p_type" property="pType" jdbcType="INTEGER" />
+    <result column="p_type_name" property="pTypeName" jdbcType="VARCHAR" />
+    <result column="p_price" property="pPrice" jdbcType="INTEGER" />
+    <result column="p_area" property="pArea" jdbcType="INTEGER" />
+    <result column="p_used" property="pUsed" jdbcType="INTEGER" />
+    <result column="p_create_time" property="pCreateTime" jdbcType="TIMESTAMP" />
+    <result column="p_update_time" property="pUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    price_id, p_ticket_id, p_ts_id, p_type, p_type_name, p_price, p_area, p_used, p_create_time, 
+    p_update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from price
+    where price_id = #{priceId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from price
+    where price_id = #{priceId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yinghai.datingticket.common.model.Price" >
+    insert into price (price_id, p_ticket_id, p_ts_id, 
+      p_type, p_type_name, p_price, 
+      p_area, p_used, p_create_time, 
+      p_update_time)
+    values (#{priceId,jdbcType=INTEGER}, #{pTicketId,jdbcType=INTEGER}, #{pTsId,jdbcType=INTEGER}, 
+      #{pType,jdbcType=INTEGER}, #{pTypeName,jdbcType=VARCHAR}, #{pPrice,jdbcType=INTEGER}, 
+      #{pArea,jdbcType=INTEGER}, #{pUsed,jdbcType=INTEGER}, #{pCreateTime,jdbcType=TIMESTAMP}, 
+      #{pUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinghai.datingticket.common.model.Price" >
+    insert into price
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="priceId != null" >
+        price_id,
+      </if>
+      <if test="pTicketId != null" >
+        p_ticket_id,
+      </if>
+      <if test="pTsId != null" >
+        p_ts_id,
+      </if>
+      <if test="pType != null" >
+        p_type,
+      </if>
+      <if test="pTypeName != null" >
+        p_type_name,
+      </if>
+      <if test="pPrice != null" >
+        p_price,
+      </if>
+      <if test="pArea != null" >
+        p_area,
+      </if>
+      <if test="pUsed != null" >
+        p_used,
+      </if>
+      <if test="pCreateTime != null" >
+        p_create_time,
+      </if>
+      <if test="pUpdateTime != null" >
+        p_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="priceId != null" >
+        #{priceId,jdbcType=INTEGER},
+      </if>
+      <if test="pTicketId != null" >
+        #{pTicketId,jdbcType=INTEGER},
+      </if>
+      <if test="pTsId != null" >
+        #{pTsId,jdbcType=INTEGER},
+      </if>
+      <if test="pType != null" >
+        #{pType,jdbcType=INTEGER},
+      </if>
+      <if test="pTypeName != null" >
+        #{pTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="pPrice != null" >
+        #{pPrice,jdbcType=INTEGER},
+      </if>
+      <if test="pArea != null" >
+        #{pArea,jdbcType=INTEGER},
+      </if>
+      <if test="pUsed != null" >
+        #{pUsed,jdbcType=INTEGER},
+      </if>
+      <if test="pCreateTime != null" >
+        #{pCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pUpdateTime != null" >
+        #{pUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinghai.datingticket.common.model.Price" >
+    update price
+    <set >
+      <if test="pTicketId != null" >
+        p_ticket_id = #{pTicketId,jdbcType=INTEGER},
+      </if>
+      <if test="pTsId != null" >
+        p_ts_id = #{pTsId,jdbcType=INTEGER},
+      </if>
+      <if test="pType != null" >
+        p_type = #{pType,jdbcType=INTEGER},
+      </if>
+      <if test="pTypeName != null" >
+        p_type_name = #{pTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="pPrice != null" >
+        p_price = #{pPrice,jdbcType=INTEGER},
+      </if>
+      <if test="pArea != null" >
+        p_area = #{pArea,jdbcType=INTEGER},
+      </if>
+      <if test="pUsed != null" >
+        p_used = #{pUsed,jdbcType=INTEGER},
+      </if>
+      <if test="pCreateTime != null" >
+        p_create_time = #{pCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pUpdateTime != null" >
+        p_update_time = #{pUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where price_id = #{priceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinghai.datingticket.common.model.Price" >
+    update price
+    set p_ticket_id = #{pTicketId,jdbcType=INTEGER},
+      p_ts_id = #{pTsId,jdbcType=INTEGER},
+      p_type = #{pType,jdbcType=INTEGER},
+      p_type_name = #{pTypeName,jdbcType=VARCHAR},
+      p_price = #{pPrice,jdbcType=INTEGER},
+      p_area = #{pArea,jdbcType=INTEGER},
+      p_used = #{pUsed,jdbcType=INTEGER},
+      p_create_time = #{pCreateTime,jdbcType=TIMESTAMP},
+      p_update_time = #{pUpdateTime,jdbcType=TIMESTAMP}
+    where price_id = #{priceId,jdbcType=INTEGER}
+  </update>
+</mapper>

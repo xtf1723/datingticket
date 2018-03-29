@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinghai.datingticket.common.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.yinghai.datingticket.common.model.Order" >
+    <id column="order_id" property="orderId" jdbcType="INTEGER" />
+    <result column="o_user_id" property="oUserId" jdbcType="INTEGER" />
+    <result column="o_type" property="oType" jdbcType="INTEGER" />
+    <result column="o_order_no" property="oOrderNo" jdbcType="VARCHAR" />
+    <result column="o_price" property="oPrice" jdbcType="INTEGER" />
+    <result column="o_qty" property="oQty" jdbcType="INTEGER" />
+    <result column="o_total_money" property="oTotalMoney" jdbcType="INTEGER" />
+    <result column="o_actual_money" property="oActualMoney" jdbcType="INTEGER" />
+    <result column="o_status" property="oStatus" jdbcType="INTEGER" />
+    <result column="o_pay_status" property="oPayStatus" jdbcType="INTEGER" />
+    <result column="o_pay_type" property="oPayType" jdbcType="INTEGER" />
+    <result column="o_pay_time" property="oPayTime" jdbcType="TIMESTAMP" />
+    <result column="o_create_time" property="oCreateTime" jdbcType="TIMESTAMP" />
+    <result column="o_update_time" property="oUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="o_complete_time" property="oCompleteTime" jdbcType="TIMESTAMP" />
+    <result column="o_cancel_time" property="oCancelTime" jdbcType="TIMESTAMP" />
+    <result column="o_cancel_type" property="oCancelType" jdbcType="INTEGER" />
+    <result column="o_cancel_reason" property="oCancelReason" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    order_id, o_user_id, o_type, o_order_no, o_price, o_qty, o_total_money, o_actual_money, 
+    o_status, o_pay_status, o_pay_type, o_pay_time, o_create_time, o_update_time, o_complete_time, 
+    o_cancel_time, o_cancel_type, o_cancel_reason
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yinghai.datingticket.common.model.Order" >
+    insert into order (order_id, o_user_id, o_type, 
+      o_order_no, o_price, o_qty, 
+      o_total_money, o_actual_money, o_status, 
+      o_pay_status, o_pay_type, o_pay_time, 
+      o_create_time, o_update_time, o_complete_time, 
+      o_cancel_time, o_cancel_type, o_cancel_reason
+      )
+    values (#{orderId,jdbcType=INTEGER}, #{oUserId,jdbcType=INTEGER}, #{oType,jdbcType=INTEGER}, 
+      #{oOrderNo,jdbcType=VARCHAR}, #{oPrice,jdbcType=INTEGER}, #{oQty,jdbcType=INTEGER}, 
+      #{oTotalMoney,jdbcType=INTEGER}, #{oActualMoney,jdbcType=INTEGER}, #{oStatus,jdbcType=INTEGER}, 
+      #{oPayStatus,jdbcType=INTEGER}, #{oPayType,jdbcType=INTEGER}, #{oPayTime,jdbcType=TIMESTAMP}, 
+      #{oCreateTime,jdbcType=TIMESTAMP}, #{oUpdateTime,jdbcType=TIMESTAMP}, #{oCompleteTime,jdbcType=TIMESTAMP}, 
+      #{oCancelTime,jdbcType=TIMESTAMP}, #{oCancelType,jdbcType=INTEGER}, #{oCancelReason,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinghai.datingticket.common.model.Order" >
+    insert into order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="oUserId != null" >
+        o_user_id,
+      </if>
+      <if test="oType != null" >
+        o_type,
+      </if>
+      <if test="oOrderNo != null" >
+        o_order_no,
+      </if>
+      <if test="oPrice != null" >
+        o_price,
+      </if>
+      <if test="oQty != null" >
+        o_qty,
+      </if>
+      <if test="oTotalMoney != null" >
+        o_total_money,
+      </if>
+      <if test="oActualMoney != null" >
+        o_actual_money,
+      </if>
+      <if test="oStatus != null" >
+        o_status,
+      </if>
+      <if test="oPayStatus != null" >
+        o_pay_status,
+      </if>
+      <if test="oPayType != null" >
+        o_pay_type,
+      </if>
+      <if test="oPayTime != null" >
+        o_pay_time,
+      </if>
+      <if test="oCreateTime != null" >
+        o_create_time,
+      </if>
+      <if test="oUpdateTime != null" >
+        o_update_time,
+      </if>
+      <if test="oCompleteTime != null" >
+        o_complete_time,
+      </if>
+      <if test="oCancelTime != null" >
+        o_cancel_time,
+      </if>
+      <if test="oCancelType != null" >
+        o_cancel_type,
+      </if>
+      <if test="oCancelReason != null" >
+        o_cancel_reason,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        #{orderId,jdbcType=INTEGER},
+      </if>
+      <if test="oUserId != null" >
+        #{oUserId,jdbcType=INTEGER},
+      </if>
+      <if test="oType != null" >
+        #{oType,jdbcType=INTEGER},
+      </if>
+      <if test="oOrderNo != null" >
+        #{oOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oPrice != null" >
+        #{oPrice,jdbcType=INTEGER},
+      </if>
+      <if test="oQty != null" >
+        #{oQty,jdbcType=INTEGER},
+      </if>
+      <if test="oTotalMoney != null" >
+        #{oTotalMoney,jdbcType=INTEGER},
+      </if>
+      <if test="oActualMoney != null" >
+        #{oActualMoney,jdbcType=INTEGER},
+      </if>
+      <if test="oStatus != null" >
+        #{oStatus,jdbcType=INTEGER},
+      </if>
+      <if test="oPayStatus != null" >
+        #{oPayStatus,jdbcType=INTEGER},
+      </if>
+      <if test="oPayType != null" >
+        #{oPayType,jdbcType=INTEGER},
+      </if>
+      <if test="oPayTime != null" >
+        #{oPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oCreateTime != null" >
+        #{oCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oUpdateTime != null" >
+        #{oUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oCompleteTime != null" >
+        #{oCompleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oCancelTime != null" >
+        #{oCancelTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oCancelType != null" >
+        #{oCancelType,jdbcType=INTEGER},
+      </if>
+      <if test="oCancelReason != null" >
+        #{oCancelReason,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinghai.datingticket.common.model.Order" >
+    update order
+    <set >
+      <if test="oUserId != null" >
+        o_user_id = #{oUserId,jdbcType=INTEGER},
+      </if>
+      <if test="oType != null" >
+        o_type = #{oType,jdbcType=INTEGER},
+      </if>
+      <if test="oOrderNo != null" >
+        o_order_no = #{oOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="oPrice != null" >
+        o_price = #{oPrice,jdbcType=INTEGER},
+      </if>
+      <if test="oQty != null" >
+        o_qty = #{oQty,jdbcType=INTEGER},
+      </if>
+      <if test="oTotalMoney != null" >
+        o_total_money = #{oTotalMoney,jdbcType=INTEGER},
+      </if>
+      <if test="oActualMoney != null" >
+        o_actual_money = #{oActualMoney,jdbcType=INTEGER},
+      </if>
+      <if test="oStatus != null" >
+        o_status = #{oStatus,jdbcType=INTEGER},
+      </if>
+      <if test="oPayStatus != null" >
+        o_pay_status = #{oPayStatus,jdbcType=INTEGER},
+      </if>
+      <if test="oPayType != null" >
+        o_pay_type = #{oPayType,jdbcType=INTEGER},
+      </if>
+      <if test="oPayTime != null" >
+        o_pay_time = #{oPayTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oCreateTime != null" >
+        o_create_time = #{oCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oUpdateTime != null" >
+        o_update_time = #{oUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oCompleteTime != null" >
+        o_complete_time = #{oCompleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oCancelTime != null" >
+        o_cancel_time = #{oCancelTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="oCancelType != null" >
+        o_cancel_type = #{oCancelType,jdbcType=INTEGER},
+      </if>
+      <if test="oCancelReason != null" >
+        o_cancel_reason = #{oCancelReason,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinghai.datingticket.common.model.Order" >
+    update order
+    set o_user_id = #{oUserId,jdbcType=INTEGER},
+      o_type = #{oType,jdbcType=INTEGER},
+      o_order_no = #{oOrderNo,jdbcType=VARCHAR},
+      o_price = #{oPrice,jdbcType=INTEGER},
+      o_qty = #{oQty,jdbcType=INTEGER},
+      o_total_money = #{oTotalMoney,jdbcType=INTEGER},
+      o_actual_money = #{oActualMoney,jdbcType=INTEGER},
+      o_status = #{oStatus,jdbcType=INTEGER},
+      o_pay_status = #{oPayStatus,jdbcType=INTEGER},
+      o_pay_type = #{oPayType,jdbcType=INTEGER},
+      o_pay_time = #{oPayTime,jdbcType=TIMESTAMP},
+      o_create_time = #{oCreateTime,jdbcType=TIMESTAMP},
+      o_update_time = #{oUpdateTime,jdbcType=TIMESTAMP},
+      o_complete_time = #{oCompleteTime,jdbcType=TIMESTAMP},
+      o_cancel_time = #{oCancelTime,jdbcType=TIMESTAMP},
+      o_cancel_type = #{oCancelType,jdbcType=INTEGER},
+      o_cancel_reason = #{oCancelReason,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=INTEGER}
+  </update>
+</mapper>

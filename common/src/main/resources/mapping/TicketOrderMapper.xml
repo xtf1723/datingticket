@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinghai.datingticket.common.dao.TicketOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.yinghai.datingticket.common.model.TicketOrder" >
+    <id column="order_ticket_id" property="orderTicketId" jdbcType="INTEGER" />
+    <result column="ot_order_id" property="otOrderId" jdbcType="INTEGER" />
+    <result column="ot_ticket_type" property="otTicketType" jdbcType="INTEGER" />
+    <result column="ot_ts_id" property="otTsId" jdbcType="INTEGER" />
+    <result column="ot_price_id" property="otPriceId" jdbcType="INTEGER" />
+    <result column="ot_use_status" property="otUseStatus" jdbcType="INTEGER" />
+    <result column="ot_get_no" property="otGetNo" jdbcType="VARCHAR" />
+    <result column="ot_pay_no" property="otPayNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    order_ticket_id, ot_order_id, ot_ticket_type, ot_ts_id, ot_price_id, ot_use_status, 
+    ot_get_no, ot_pay_no
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_ticket
+    where order_ticket_id = #{orderTicketId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_ticket
+    where order_ticket_id = #{orderTicketId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yinghai.datingticket.common.model.TicketOrder" >
+    insert into order_ticket (order_ticket_id, ot_order_id, ot_ticket_type, 
+      ot_ts_id, ot_price_id, ot_use_status, 
+      ot_get_no, ot_pay_no)
+    values (#{orderTicketId,jdbcType=INTEGER}, #{otOrderId,jdbcType=INTEGER}, #{otTicketType,jdbcType=INTEGER}, 
+      #{otTsId,jdbcType=INTEGER}, #{otPriceId,jdbcType=INTEGER}, #{otUseStatus,jdbcType=INTEGER}, 
+      #{otGetNo,jdbcType=VARCHAR}, #{otPayNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinghai.datingticket.common.model.TicketOrder" >
+    insert into order_ticket
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderTicketId != null" >
+        order_ticket_id,
+      </if>
+      <if test="otOrderId != null" >
+        ot_order_id,
+      </if>
+      <if test="otTicketType != null" >
+        ot_ticket_type,
+      </if>
+      <if test="otTsId != null" >
+        ot_ts_id,
+      </if>
+      <if test="otPriceId != null" >
+        ot_price_id,
+      </if>
+      <if test="otUseStatus != null" >
+        ot_use_status,
+      </if>
+      <if test="otGetNo != null" >
+        ot_get_no,
+      </if>
+      <if test="otPayNo != null" >
+        ot_pay_no,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderTicketId != null" >
+        #{orderTicketId,jdbcType=INTEGER},
+      </if>
+      <if test="otOrderId != null" >
+        #{otOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="otTicketType != null" >
+        #{otTicketType,jdbcType=INTEGER},
+      </if>
+      <if test="otTsId != null" >
+        #{otTsId,jdbcType=INTEGER},
+      </if>
+      <if test="otPriceId != null" >
+        #{otPriceId,jdbcType=INTEGER},
+      </if>
+      <if test="otUseStatus != null" >
+        #{otUseStatus,jdbcType=INTEGER},
+      </if>
+      <if test="otGetNo != null" >
+        #{otGetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="otPayNo != null" >
+        #{otPayNo,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinghai.datingticket.common.model.TicketOrder" >
+    update order_ticket
+    <set >
+      <if test="otOrderId != null" >
+        ot_order_id = #{otOrderId,jdbcType=INTEGER},
+      </if>
+      <if test="otTicketType != null" >
+        ot_ticket_type = #{otTicketType,jdbcType=INTEGER},
+      </if>
+      <if test="otTsId != null" >
+        ot_ts_id = #{otTsId,jdbcType=INTEGER},
+      </if>
+      <if test="otPriceId != null" >
+        ot_price_id = #{otPriceId,jdbcType=INTEGER},
+      </if>
+      <if test="otUseStatus != null" >
+        ot_use_status = #{otUseStatus,jdbcType=INTEGER},
+      </if>
+      <if test="otGetNo != null" >
+        ot_get_no = #{otGetNo,jdbcType=VARCHAR},
+      </if>
+      <if test="otPayNo != null" >
+        ot_pay_no = #{otPayNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_ticket_id = #{orderTicketId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinghai.datingticket.common.model.TicketOrder" >
+    update order_ticket
+    set ot_order_id = #{otOrderId,jdbcType=INTEGER},
+      ot_ticket_type = #{otTicketType,jdbcType=INTEGER},
+      ot_ts_id = #{otTsId,jdbcType=INTEGER},
+      ot_price_id = #{otPriceId,jdbcType=INTEGER},
+      ot_use_status = #{otUseStatus,jdbcType=INTEGER},
+      ot_get_no = #{otGetNo,jdbcType=VARCHAR},
+      ot_pay_no = #{otPayNo,jdbcType=VARCHAR}
+    where order_ticket_id = #{orderTicketId,jdbcType=INTEGER}
+  </update>
+</mapper>

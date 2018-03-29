@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinghai.datingticket.common.dao.TicketScheduleMapper" >
+  <resultMap id="BaseResultMap" type="com.yinghai.datingticket.common.model.TicketSchedule" >
+    <id column="ts_id" property="tsId" jdbcType="INTEGER" />
+    <result column="ts_ticket_id" property="tsTicketId" jdbcType="INTEGER" />
+    <result column="ts_time" property="tsTime" jdbcType="TIMESTAMP" />
+    <result column="ts_hall_id" property="tsHallId" jdbcType="INTEGER" />
+    <result column="ts_start_time" property="tsStartTime" jdbcType="TIMESTAMP" />
+    <result column="ts_end_time" property="tsEndTime" jdbcType="TIMESTAMP" />
+    <result column="ts_presale_start" property="tsPresaleStart" jdbcType="TIMESTAMP" />
+    <result column="ts_presale_end" property="tsPresaleEnd" jdbcType="TIMESTAMP" />
+    <result column="ts_sale_start" property="tsSaleStart" jdbcType="TIMESTAMP" />
+    <result column="ts_sale_end" property="tsSaleEnd" jdbcType="TIMESTAMP" />
+    <result column="ts_ticket_total" property="tsTicketTotal" jdbcType="INTEGER" />
+    <result column="ts_presale_total" property="tsPresaleTotal" jdbcType="INTEGER" />
+    <result column="ts_ticket_stock" property="tsTicketStock" jdbcType="INTEGER" />
+    <result column="ts_presale_stock" property="tsPresaleStock" jdbcType="INTEGER" />
+    <result column="ts_available" property="tsAvailable" jdbcType="INTEGER" />
+    <result column="ts_create_time" property="tsCreateTime" jdbcType="TIMESTAMP" />
+    <result column="ts_update_time" property="tsUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ts_id, ts_ticket_id, ts_time, ts_hall_id, ts_start_time, ts_end_time, ts_presale_start, 
+    ts_presale_end, ts_sale_start, ts_sale_end, ts_ticket_total, ts_presale_total, ts_ticket_stock, 
+    ts_presale_stock, ts_available, ts_create_time, ts_update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from ticket_schedule
+    where ts_id = #{tsId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ticket_schedule
+    where ts_id = #{tsId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yinghai.datingticket.common.model.TicketSchedule" >
+    insert into ticket_schedule (ts_id, ts_ticket_id, ts_time, 
+      ts_hall_id, ts_start_time, ts_end_time, 
+      ts_presale_start, ts_presale_end, ts_sale_start, 
+      ts_sale_end, ts_ticket_total, ts_presale_total, 
+      ts_ticket_stock, ts_presale_stock, ts_available, 
+      ts_create_time, ts_update_time)
+    values (#{tsId,jdbcType=INTEGER}, #{tsTicketId,jdbcType=INTEGER}, #{tsTime,jdbcType=TIMESTAMP}, 
+      #{tsHallId,jdbcType=INTEGER}, #{tsStartTime,jdbcType=TIMESTAMP}, #{tsEndTime,jdbcType=TIMESTAMP}, 
+      #{tsPresaleStart,jdbcType=TIMESTAMP}, #{tsPresaleEnd,jdbcType=TIMESTAMP}, #{tsSaleStart,jdbcType=TIMESTAMP}, 
+      #{tsSaleEnd,jdbcType=TIMESTAMP}, #{tsTicketTotal,jdbcType=INTEGER}, #{tsPresaleTotal,jdbcType=INTEGER}, 
+      #{tsTicketStock,jdbcType=INTEGER}, #{tsPresaleStock,jdbcType=INTEGER}, #{tsAvailable,jdbcType=INTEGER}, 
+      #{tsCreateTime,jdbcType=TIMESTAMP}, #{tsUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinghai.datingticket.common.model.TicketSchedule" >
+    insert into ticket_schedule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="tsId != null" >
+        ts_id,
+      </if>
+      <if test="tsTicketId != null" >
+        ts_ticket_id,
+      </if>
+      <if test="tsTime != null" >
+        ts_time,
+      </if>
+      <if test="tsHallId != null" >
+        ts_hall_id,
+      </if>
+      <if test="tsStartTime != null" >
+        ts_start_time,
+      </if>
+      <if test="tsEndTime != null" >
+        ts_end_time,
+      </if>
+      <if test="tsPresaleStart != null" >
+        ts_presale_start,
+      </if>
+      <if test="tsPresaleEnd != null" >
+        ts_presale_end,
+      </if>
+      <if test="tsSaleStart != null" >
+        ts_sale_start,
+      </if>
+      <if test="tsSaleEnd != null" >
+        ts_sale_end,
+      </if>
+      <if test="tsTicketTotal != null" >
+        ts_ticket_total,
+      </if>
+      <if test="tsPresaleTotal != null" >
+        ts_presale_total,
+      </if>
+      <if test="tsTicketStock != null" >
+        ts_ticket_stock,
+      </if>
+      <if test="tsPresaleStock != null" >
+        ts_presale_stock,
+      </if>
+      <if test="tsAvailable != null" >
+        ts_available,
+      </if>
+      <if test="tsCreateTime != null" >
+        ts_create_time,
+      </if>
+      <if test="tsUpdateTime != null" >
+        ts_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="tsId != null" >
+        #{tsId,jdbcType=INTEGER},
+      </if>
+      <if test="tsTicketId != null" >
+        #{tsTicketId,jdbcType=INTEGER},
+      </if>
+      <if test="tsTime != null" >
+        #{tsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tsHallId != null" >
+        #{tsHallId,jdbcType=INTEGER},
+      </if>
+      <if test="tsStartTime != null" >
+        #{tsStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tsEndTime != null" >
+        #{tsEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tsPresaleStart != null" >
+        #{tsPresaleStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tsPresaleEnd != null" >
+        #{tsPresaleEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tsSaleStart != null" >
+        #{tsSaleStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tsSaleEnd != null" >
+        #{tsSaleEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tsTicketTotal != null" >
+        #{tsTicketTotal,jdbcType=INTEGER},
+      </if>
+      <if test="tsPresaleTotal != null" >
+        #{tsPresaleTotal,jdbcType=INTEGER},
+      </if>
+      <if test="tsTicketStock != null" >
+        #{tsTicketStock,jdbcType=INTEGER},
+      </if>
+      <if test="tsPresaleStock != null" >
+        #{tsPresaleStock,jdbcType=INTEGER},
+      </if>
+      <if test="tsAvailable != null" >
+        #{tsAvailable,jdbcType=INTEGER},
+      </if>
+      <if test="tsCreateTime != null" >
+        #{tsCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tsUpdateTime != null" >
+        #{tsUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinghai.datingticket.common.model.TicketSchedule" >
+    update ticket_schedule
+    <set >
+      <if test="tsTicketId != null" >
+        ts_ticket_id = #{tsTicketId,jdbcType=INTEGER},
+      </if>
+      <if test="tsTime != null" >
+        ts_time = #{tsTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tsHallId != null" >
+        ts_hall_id = #{tsHallId,jdbcType=INTEGER},
+      </if>
+      <if test="tsStartTime != null" >
+        ts_start_time = #{tsStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tsEndTime != null" >
+        ts_end_time = #{tsEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tsPresaleStart != null" >
+        ts_presale_start = #{tsPresaleStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tsPresaleEnd != null" >
+        ts_presale_end = #{tsPresaleEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tsSaleStart != null" >
+        ts_sale_start = #{tsSaleStart,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tsSaleEnd != null" >
+        ts_sale_end = #{tsSaleEnd,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tsTicketTotal != null" >
+        ts_ticket_total = #{tsTicketTotal,jdbcType=INTEGER},
+      </if>
+      <if test="tsPresaleTotal != null" >
+        ts_presale_total = #{tsPresaleTotal,jdbcType=INTEGER},
+      </if>
+      <if test="tsTicketStock != null" >
+        ts_ticket_stock = #{tsTicketStock,jdbcType=INTEGER},
+      </if>
+      <if test="tsPresaleStock != null" >
+        ts_presale_stock = #{tsPresaleStock,jdbcType=INTEGER},
+      </if>
+      <if test="tsAvailable != null" >
+        ts_available = #{tsAvailable,jdbcType=INTEGER},
+      </if>
+      <if test="tsCreateTime != null" >
+        ts_create_time = #{tsCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tsUpdateTime != null" >
+        ts_update_time = #{tsUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ts_id = #{tsId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinghai.datingticket.common.model.TicketSchedule" >
+    update ticket_schedule
+    set ts_ticket_id = #{tsTicketId,jdbcType=INTEGER},
+      ts_time = #{tsTime,jdbcType=TIMESTAMP},
+      ts_hall_id = #{tsHallId,jdbcType=INTEGER},
+      ts_start_time = #{tsStartTime,jdbcType=TIMESTAMP},
+      ts_end_time = #{tsEndTime,jdbcType=TIMESTAMP},
+      ts_presale_start = #{tsPresaleStart,jdbcType=TIMESTAMP},
+      ts_presale_end = #{tsPresaleEnd,jdbcType=TIMESTAMP},
+      ts_sale_start = #{tsSaleStart,jdbcType=TIMESTAMP},
+      ts_sale_end = #{tsSaleEnd,jdbcType=TIMESTAMP},
+      ts_ticket_total = #{tsTicketTotal,jdbcType=INTEGER},
+      ts_presale_total = #{tsPresaleTotal,jdbcType=INTEGER},
+      ts_ticket_stock = #{tsTicketStock,jdbcType=INTEGER},
+      ts_presale_stock = #{tsPresaleStock,jdbcType=INTEGER},
+      ts_available = #{tsAvailable,jdbcType=INTEGER},
+      ts_create_time = #{tsCreateTime,jdbcType=TIMESTAMP},
+      ts_update_time = #{tsUpdateTime,jdbcType=TIMESTAMP}
+    where ts_id = #{tsId,jdbcType=INTEGER}
+  </update>
+</mapper>

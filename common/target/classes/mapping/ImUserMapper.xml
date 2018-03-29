@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinghai.datingticket.common.dao.ImUserMapper" >
+  <resultMap id="BaseResultMap" type="com.yinghai.datingticket.common.model.ImUser" >
+    <id column="iu_id" property="iuId" jdbcType="INTEGER" />
+    <result column="iu_user_id" property="iuUserId" jdbcType="VARCHAR" />
+    <result column="iu_name" property="iuName" jdbcType="VARCHAR" />
+    <result column="iu_token" property="iuToken" jdbcType="VARCHAR" />
+    <result column="iu_img" property="iuImg" jdbcType="VARCHAR" />
+    <result column="iu_type" property="iuType" jdbcType="INTEGER" />
+    <result column="iu_create_time" property="iuCreateTime" jdbcType="TIMESTAMP" />
+    <result column="iu_update_time" property="iuUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    iu_id, iu_user_id, iu_name, iu_token, iu_img, iu_type, iu_create_time, iu_update_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from im_user
+    where iu_id = #{iuId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from im_user
+    where iu_id = #{iuId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yinghai.datingticket.common.model.ImUser" >
+    insert into im_user (iu_id, iu_user_id, iu_name, 
+      iu_token, iu_img, iu_type, 
+      iu_create_time, iu_update_time)
+    values (#{iuId,jdbcType=INTEGER}, #{iuUserId,jdbcType=VARCHAR}, #{iuName,jdbcType=VARCHAR}, 
+      #{iuToken,jdbcType=VARCHAR}, #{iuImg,jdbcType=VARCHAR}, #{iuType,jdbcType=INTEGER}, 
+      #{iuCreateTime,jdbcType=TIMESTAMP}, #{iuUpdateTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinghai.datingticket.common.model.ImUser" >
+    insert into im_user
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="iuId != null" >
+        iu_id,
+      </if>
+      <if test="iuUserId != null" >
+        iu_user_id,
+      </if>
+      <if test="iuName != null" >
+        iu_name,
+      </if>
+      <if test="iuToken != null" >
+        iu_token,
+      </if>
+      <if test="iuImg != null" >
+        iu_img,
+      </if>
+      <if test="iuType != null" >
+        iu_type,
+      </if>
+      <if test="iuCreateTime != null" >
+        iu_create_time,
+      </if>
+      <if test="iuUpdateTime != null" >
+        iu_update_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="iuId != null" >
+        #{iuId,jdbcType=INTEGER},
+      </if>
+      <if test="iuUserId != null" >
+        #{iuUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="iuName != null" >
+        #{iuName,jdbcType=VARCHAR},
+      </if>
+      <if test="iuToken != null" >
+        #{iuToken,jdbcType=VARCHAR},
+      </if>
+      <if test="iuImg != null" >
+        #{iuImg,jdbcType=VARCHAR},
+      </if>
+      <if test="iuType != null" >
+        #{iuType,jdbcType=INTEGER},
+      </if>
+      <if test="iuCreateTime != null" >
+        #{iuCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iuUpdateTime != null" >
+        #{iuUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinghai.datingticket.common.model.ImUser" >
+    update im_user
+    <set >
+      <if test="iuUserId != null" >
+        iu_user_id = #{iuUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="iuName != null" >
+        iu_name = #{iuName,jdbcType=VARCHAR},
+      </if>
+      <if test="iuToken != null" >
+        iu_token = #{iuToken,jdbcType=VARCHAR},
+      </if>
+      <if test="iuImg != null" >
+        iu_img = #{iuImg,jdbcType=VARCHAR},
+      </if>
+      <if test="iuType != null" >
+        iu_type = #{iuType,jdbcType=INTEGER},
+      </if>
+      <if test="iuCreateTime != null" >
+        iu_create_time = #{iuCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="iuUpdateTime != null" >
+        iu_update_time = #{iuUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where iu_id = #{iuId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinghai.datingticket.common.model.ImUser" >
+    update im_user
+    set iu_user_id = #{iuUserId,jdbcType=VARCHAR},
+      iu_name = #{iuName,jdbcType=VARCHAR},
+      iu_token = #{iuToken,jdbcType=VARCHAR},
+      iu_img = #{iuImg,jdbcType=VARCHAR},
+      iu_type = #{iuType,jdbcType=INTEGER},
+      iu_create_time = #{iuCreateTime,jdbcType=TIMESTAMP},
+      iu_update_time = #{iuUpdateTime,jdbcType=TIMESTAMP}
+    where iu_id = #{iuId,jdbcType=INTEGER}
+  </update>
+</mapper>

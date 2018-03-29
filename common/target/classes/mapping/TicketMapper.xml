@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinghai.datingticket.common.dao.TicketMapper" >
+  <resultMap id="BaseResultMap" type="com.yinghai.datingticket.common.model.Ticket" >
+    <id column="ticket_id" property="ticketId" jdbcType="INTEGER" />
+    <result column="t_name" property="tName" jdbcType="VARCHAR" />
+    <result column="t_img" property="tImg" jdbcType="VARCHAR" />
+    <result column="t_start_time" property="tStartTime" jdbcType="TIMESTAMP" />
+    <result column="t_end_time" property="tEndTime" jdbcType="TIMESTAMP" />
+    <result column="t_price_range" property="tPriceRange" jdbcType="VARCHAR" />
+    <result column="t_city" property="tCity" jdbcType="VARCHAR" />
+    <result column="t_locale" property="tLocale" jdbcType="VARCHAR" />
+    <result column="t_loc_x" property="tLocX" jdbcType="DOUBLE" />
+    <result column="t_loc_y" property="tLocY" jdbcType="DOUBLE" />
+    <result column="t_brief" property="tBrief" jdbcType="VARCHAR" />
+    <result column="t_notes" property="tNotes" jdbcType="VARCHAR" />
+    <result column="t_type" property="tType" jdbcType="INTEGER" />
+    <result column="t_content_type" property="tContentType" jdbcType="VARCHAR" />
+    <result column="t_shelf" property="tShelf" jdbcType="INTEGER" />
+    <result column="t_video" property="tVideo" jdbcType="VARCHAR" />
+    <result column="t_create_time" property="tCreateTime" jdbcType="TIMESTAMP" />
+    <result column="t_update_time" property="tUpdateTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.yinghai.datingticket.common.model.Ticket" extends="BaseResultMap" >
+    <result column="t_details" property="tDetails" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ticket_id, t_name, t_img, t_start_time, t_end_time, t_price_range, t_city, t_locale, 
+    t_loc_x, t_loc_y, t_brief, t_notes, t_type, t_content_type, t_shelf, t_video, t_create_time, 
+    t_update_time
+  </sql>
+  <sql id="Blob_Column_List" >
+    t_details
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from ticket
+    where ticket_id = #{ticketId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from ticket
+    where ticket_id = #{ticketId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.yinghai.datingticket.common.model.Ticket" >
+    insert into ticket (ticket_id, t_name, t_img, 
+      t_start_time, t_end_time, t_price_range, 
+      t_city, t_locale, t_loc_x, 
+      t_loc_y, t_brief, t_notes, 
+      t_type, t_content_type, t_shelf, 
+      t_video, t_create_time, t_update_time, 
+      t_details)
+    values (#{ticketId,jdbcType=INTEGER}, #{tName,jdbcType=VARCHAR}, #{tImg,jdbcType=VARCHAR}, 
+      #{tStartTime,jdbcType=TIMESTAMP}, #{tEndTime,jdbcType=TIMESTAMP}, #{tPriceRange,jdbcType=VARCHAR}, 
+      #{tCity,jdbcType=VARCHAR}, #{tLocale,jdbcType=VARCHAR}, #{tLocX,jdbcType=DOUBLE}, 
+      #{tLocY,jdbcType=DOUBLE}, #{tBrief,jdbcType=VARCHAR}, #{tNotes,jdbcType=VARCHAR}, 
+      #{tType,jdbcType=INTEGER}, #{tContentType,jdbcType=VARCHAR}, #{tShelf,jdbcType=INTEGER}, 
+      #{tVideo,jdbcType=VARCHAR}, #{tCreateTime,jdbcType=TIMESTAMP}, #{tUpdateTime,jdbcType=TIMESTAMP}, 
+      #{tDetails,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.yinghai.datingticket.common.model.Ticket" >
+    insert into ticket
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="ticketId != null" >
+        ticket_id,
+      </if>
+      <if test="tName != null" >
+        t_name,
+      </if>
+      <if test="tImg != null" >
+        t_img,
+      </if>
+      <if test="tStartTime != null" >
+        t_start_time,
+      </if>
+      <if test="tEndTime != null" >
+        t_end_time,
+      </if>
+      <if test="tPriceRange != null" >
+        t_price_range,
+      </if>
+      <if test="tCity != null" >
+        t_city,
+      </if>
+      <if test="tLocale != null" >
+        t_locale,
+      </if>
+      <if test="tLocX != null" >
+        t_loc_x,
+      </if>
+      <if test="tLocY != null" >
+        t_loc_y,
+      </if>
+      <if test="tBrief != null" >
+        t_brief,
+      </if>
+      <if test="tNotes != null" >
+        t_notes,
+      </if>
+      <if test="tType != null" >
+        t_type,
+      </if>
+      <if test="tContentType != null" >
+        t_content_type,
+      </if>
+      <if test="tShelf != null" >
+        t_shelf,
+      </if>
+      <if test="tVideo != null" >
+        t_video,
+      </if>
+      <if test="tCreateTime != null" >
+        t_create_time,
+      </if>
+      <if test="tUpdateTime != null" >
+        t_update_time,
+      </if>
+      <if test="tDetails != null" >
+        t_details,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="ticketId != null" >
+        #{ticketId,jdbcType=INTEGER},
+      </if>
+      <if test="tName != null" >
+        #{tName,jdbcType=VARCHAR},
+      </if>
+      <if test="tImg != null" >
+        #{tImg,jdbcType=VARCHAR},
+      </if>
+      <if test="tStartTime != null" >
+        #{tStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tEndTime != null" >
+        #{tEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tPriceRange != null" >
+        #{tPriceRange,jdbcType=VARCHAR},
+      </if>
+      <if test="tCity != null" >
+        #{tCity,jdbcType=VARCHAR},
+      </if>
+      <if test="tLocale != null" >
+        #{tLocale,jdbcType=VARCHAR},
+      </if>
+      <if test="tLocX != null" >
+        #{tLocX,jdbcType=DOUBLE},
+      </if>
+      <if test="tLocY != null" >
+        #{tLocY,jdbcType=DOUBLE},
+      </if>
+      <if test="tBrief != null" >
+        #{tBrief,jdbcType=VARCHAR},
+      </if>
+      <if test="tNotes != null" >
+        #{tNotes,jdbcType=VARCHAR},
+      </if>
+      <if test="tType != null" >
+        #{tType,jdbcType=INTEGER},
+      </if>
+      <if test="tContentType != null" >
+        #{tContentType,jdbcType=VARCHAR},
+      </if>
+      <if test="tShelf != null" >
+        #{tShelf,jdbcType=INTEGER},
+      </if>
+      <if test="tVideo != null" >
+        #{tVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="tCreateTime != null" >
+        #{tCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tUpdateTime != null" >
+        #{tUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tDetails != null" >
+        #{tDetails,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.yinghai.datingticket.common.model.Ticket" >
+    update ticket
+    <set >
+      <if test="tName != null" >
+        t_name = #{tName,jdbcType=VARCHAR},
+      </if>
+      <if test="tImg != null" >
+        t_img = #{tImg,jdbcType=VARCHAR},
+      </if>
+      <if test="tStartTime != null" >
+        t_start_time = #{tStartTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tEndTime != null" >
+        t_end_time = #{tEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tPriceRange != null" >
+        t_price_range = #{tPriceRange,jdbcType=VARCHAR},
+      </if>
+      <if test="tCity != null" >
+        t_city = #{tCity,jdbcType=VARCHAR},
+      </if>
+      <if test="tLocale != null" >
+        t_locale = #{tLocale,jdbcType=VARCHAR},
+      </if>
+      <if test="tLocX != null" >
+        t_loc_x = #{tLocX,jdbcType=DOUBLE},
+      </if>
+      <if test="tLocY != null" >
+        t_loc_y = #{tLocY,jdbcType=DOUBLE},
+      </if>
+      <if test="tBrief != null" >
+        t_brief = #{tBrief,jdbcType=VARCHAR},
+      </if>
+      <if test="tNotes != null" >
+        t_notes = #{tNotes,jdbcType=VARCHAR},
+      </if>
+      <if test="tType != null" >
+        t_type = #{tType,jdbcType=INTEGER},
+      </if>
+      <if test="tContentType != null" >
+        t_content_type = #{tContentType,jdbcType=VARCHAR},
+      </if>
+      <if test="tShelf != null" >
+        t_shelf = #{tShelf,jdbcType=INTEGER},
+      </if>
+      <if test="tVideo != null" >
+        t_video = #{tVideo,jdbcType=VARCHAR},
+      </if>
+      <if test="tCreateTime != null" >
+        t_create_time = #{tCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tUpdateTime != null" >
+        t_update_time = #{tUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="tDetails != null" >
+        t_details = #{tDetails,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where ticket_id = #{ticketId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.yinghai.datingticket.common.model.Ticket" >
+    update ticket
+    set t_name = #{tName,jdbcType=VARCHAR},
+      t_img = #{tImg,jdbcType=VARCHAR},
+      t_start_time = #{tStartTime,jdbcType=TIMESTAMP},
+      t_end_time = #{tEndTime,jdbcType=TIMESTAMP},
+      t_price_range = #{tPriceRange,jdbcType=VARCHAR},
+      t_city = #{tCity,jdbcType=VARCHAR},
+      t_locale = #{tLocale,jdbcType=VARCHAR},
+      t_loc_x = #{tLocX,jdbcType=DOUBLE},
+      t_loc_y = #{tLocY,jdbcType=DOUBLE},
+      t_brief = #{tBrief,jdbcType=VARCHAR},
+      t_notes = #{tNotes,jdbcType=VARCHAR},
+      t_type = #{tType,jdbcType=INTEGER},
+      t_content_type = #{tContentType,jdbcType=VARCHAR},
+      t_shelf = #{tShelf,jdbcType=INTEGER},
+      t_video = #{tVideo,jdbcType=VARCHAR},
+      t_create_time = #{tCreateTime,jdbcType=TIMESTAMP},
+      t_update_time = #{tUpdateTime,jdbcType=TIMESTAMP},
+      t_details = #{tDetails,jdbcType=LONGVARCHAR}
+    where ticket_id = #{ticketId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.yinghai.datingticket.common.model.Ticket" >
+    update ticket
+    set t_name = #{tName,jdbcType=VARCHAR},
+      t_img = #{tImg,jdbcType=VARCHAR},
+      t_start_time = #{tStartTime,jdbcType=TIMESTAMP},
+      t_end_time = #{tEndTime,jdbcType=TIMESTAMP},
+      t_price_range = #{tPriceRange,jdbcType=VARCHAR},
+      t_city = #{tCity,jdbcType=VARCHAR},
+      t_locale = #{tLocale,jdbcType=VARCHAR},
+      t_loc_x = #{tLocX,jdbcType=DOUBLE},
+      t_loc_y = #{tLocY,jdbcType=DOUBLE},
+      t_brief = #{tBrief,jdbcType=VARCHAR},
+      t_notes = #{tNotes,jdbcType=VARCHAR},
+      t_type = #{tType,jdbcType=INTEGER},
+      t_content_type = #{tContentType,jdbcType=VARCHAR},
+      t_shelf = #{tShelf,jdbcType=INTEGER},
+      t_video = #{tVideo,jdbcType=VARCHAR},
+      t_create_time = #{tCreateTime,jdbcType=TIMESTAMP},
+      t_update_time = #{tUpdateTime,jdbcType=TIMESTAMP}
+    where ticket_id = #{ticketId,jdbcType=INTEGER}
+  </update>
+</mapper>
