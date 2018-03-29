@@ -2,81 +2,223 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.yinghai.datingticket.common.dao.UserMapper" >
   <resultMap id="BaseResultMap" type="com.yinghai.datingticket.common.model.User" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="user_name" property="userName" jdbcType="VARCHAR" />
-    <result column="password" property="password" jdbcType="VARCHAR" />
-    <result column="age" property="age" jdbcType="INTEGER" />
+    <id column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="u_nick" property="uNick" jdbcType="VARCHAR" />
+    <result column="u_head_img" property="uHeadImg" jdbcType="VARCHAR" />
+    <result column="u_area_code" property="uAreaCode" jdbcType="VARCHAR" />
+    <result column="u_tel" property="uTel" jdbcType="VARCHAR" />
+    <result column="u_password" property="uPassword" jdbcType="VARCHAR" />
+    <result column="u_status" property="uStatus" jdbcType="INTEGER" />
+    <result column="u_birthday" property="uBirthday" jdbcType="DATE" />
+    <result column="u_sex" property="uSex" jdbcType="BIT" />
+    <result column="u_create_time" property="uCreateTime" jdbcType="TIMESTAMP" />
+    <result column="u_update_time" property="uUpdateTime" jdbcType="TIMESTAMP" />
+    <result column="u_device_id" property="uDeviceId" jdbcType="VARCHAR" />
+    <result column="u_device_type" property="uDeviceType" jdbcType="INTEGER" />
+    <result column="u_deleted" property="uDeleted" jdbcType="BIT" />
+    <result column="u_im" property="uIm" jdbcType="VARCHAR" />
+    <result column="u_token" property="uToken" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, user_name, password, age
+    user_id, u_nick, u_head_img, u_area_code, u_tel, u_password, u_status, u_birthday, 
+    u_sex, u_create_time, u_update_time, u_device_id, u_device_type, u_deleted, u_im, 
+    u_token
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from demo4_test
-    where id = #{id,jdbcType=INTEGER}
+    from user
+    where user_id = #{userId,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
-    delete from demo4_test
-    where id = #{id,jdbcType=INTEGER}
+    delete from user
+    where user_id = #{userId,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.yinghai.datingticket.common.model.User" >
-    insert into demo4_test (id, user_name, password, 
-      age)
-    values (#{id,jdbcType=INTEGER}, #{userName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
-      #{age,jdbcType=INTEGER})
+    insert into user (user_id, u_nick, u_head_img, 
+      u_area_code, u_tel, u_password, 
+      u_status, u_birthday, u_sex, 
+      u_create_time, u_update_time, u_device_id, 
+      u_device_type, u_deleted, u_im, 
+      u_token)
+    values (#{userId,jdbcType=INTEGER}, #{uNick,jdbcType=VARCHAR}, #{uHeadImg,jdbcType=VARCHAR}, 
+      #{uAreaCode,jdbcType=VARCHAR}, #{uTel,jdbcType=VARCHAR}, #{uPassword,jdbcType=VARCHAR}, 
+      #{uStatus,jdbcType=INTEGER}, #{uBirthday,jdbcType=DATE}, #{uSex,jdbcType=BIT}, 
+      #{uCreateTime,jdbcType=TIMESTAMP}, #{uUpdateTime,jdbcType=TIMESTAMP}, #{uDeviceId,jdbcType=VARCHAR}, 
+      #{uDeviceType,jdbcType=INTEGER}, #{uDeleted,jdbcType=BIT}, #{uIm,jdbcType=VARCHAR}, 
+      #{uToken,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.yinghai.datingticket.common.model.User" >
-    insert into demo4_test
+    insert into user
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
+      <if test="userId != null" >
+        user_id,
       </if>
-      <if test="userName != null" >
-        user_name,
+      <if test="uNick != null" >
+        u_nick,
       </if>
-      <if test="password != null" >
-        password,
+      <if test="uHeadImg != null" >
+        u_head_img,
       </if>
-      <if test="age != null" >
-        age,
+      <if test="uAreaCode != null" >
+        u_area_code,
+      </if>
+      <if test="uTel != null" >
+        u_tel,
+      </if>
+      <if test="uPassword != null" >
+        u_password,
+      </if>
+      <if test="uStatus != null" >
+        u_status,
+      </if>
+      <if test="uBirthday != null" >
+        u_birthday,
+      </if>
+      <if test="uSex != null" >
+        u_sex,
+      </if>
+      <if test="uCreateTime != null" >
+        u_create_time,
+      </if>
+      <if test="uUpdateTime != null" >
+        u_update_time,
+      </if>
+      <if test="uDeviceId != null" >
+        u_device_id,
+      </if>
+      <if test="uDeviceType != null" >
+        u_device_type,
+      </if>
+      <if test="uDeleted != null" >
+        u_deleted,
+      </if>
+      <if test="uIm != null" >
+        u_im,
+      </if>
+      <if test="uToken != null" >
+        u_token,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
       </if>
-      <if test="userName != null" >
-        #{userName,jdbcType=VARCHAR},
+      <if test="uNick != null" >
+        #{uNick,jdbcType=VARCHAR},
       </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
+      <if test="uHeadImg != null" >
+        #{uHeadImg,jdbcType=VARCHAR},
       </if>
-      <if test="age != null" >
-        #{age,jdbcType=INTEGER},
+      <if test="uAreaCode != null" >
+        #{uAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="uTel != null" >
+        #{uTel,jdbcType=VARCHAR},
+      </if>
+      <if test="uPassword != null" >
+        #{uPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="uStatus != null" >
+        #{uStatus,jdbcType=INTEGER},
+      </if>
+      <if test="uBirthday != null" >
+        #{uBirthday,jdbcType=DATE},
+      </if>
+      <if test="uSex != null" >
+        #{uSex,jdbcType=BIT},
+      </if>
+      <if test="uCreateTime != null" >
+        #{uCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uUpdateTime != null" >
+        #{uUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uDeviceId != null" >
+        #{uDeviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="uDeviceType != null" >
+        #{uDeviceType,jdbcType=INTEGER},
+      </if>
+      <if test="uDeleted != null" >
+        #{uDeleted,jdbcType=BIT},
+      </if>
+      <if test="uIm != null" >
+        #{uIm,jdbcType=VARCHAR},
+      </if>
+      <if test="uToken != null" >
+        #{uToken,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="com.yinghai.datingticket.common.model.User" >
-    update demo4_test
+    update user
     <set >
-      <if test="userName != null" >
-        user_name = #{userName,jdbcType=VARCHAR},
+      <if test="uNick != null" >
+        u_nick = #{uNick,jdbcType=VARCHAR},
       </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
+      <if test="uHeadImg != null" >
+        u_head_img = #{uHeadImg,jdbcType=VARCHAR},
       </if>
-      <if test="age != null" >
-        age = #{age,jdbcType=INTEGER},
+      <if test="uAreaCode != null" >
+        u_area_code = #{uAreaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="uTel != null" >
+        u_tel = #{uTel,jdbcType=VARCHAR},
+      </if>
+      <if test="uPassword != null" >
+        u_password = #{uPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="uStatus != null" >
+        u_status = #{uStatus,jdbcType=INTEGER},
+      </if>
+      <if test="uBirthday != null" >
+        u_birthday = #{uBirthday,jdbcType=DATE},
+      </if>
+      <if test="uSex != null" >
+        u_sex = #{uSex,jdbcType=BIT},
+      </if>
+      <if test="uCreateTime != null" >
+        u_create_time = #{uCreateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uUpdateTime != null" >
+        u_update_time = #{uUpdateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="uDeviceId != null" >
+        u_device_id = #{uDeviceId,jdbcType=VARCHAR},
+      </if>
+      <if test="uDeviceType != null" >
+        u_device_type = #{uDeviceType,jdbcType=INTEGER},
+      </if>
+      <if test="uDeleted != null" >
+        u_deleted = #{uDeleted,jdbcType=BIT},
+      </if>
+      <if test="uIm != null" >
+        u_im = #{uIm,jdbcType=VARCHAR},
+      </if>
+      <if test="uToken != null" >
+        u_token = #{uToken,jdbcType=VARCHAR},
       </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
+    where user_id = #{userId,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="com.yinghai.datingticket.common.model.User" >
-    update demo4_test
-    set user_name = #{userName,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      age = #{age,jdbcType=INTEGER}
-    where id = #{id,jdbcType=INTEGER}
+    update user
+    set u_nick = #{uNick,jdbcType=VARCHAR},
+      u_head_img = #{uHeadImg,jdbcType=VARCHAR},
+      u_area_code = #{uAreaCode,jdbcType=VARCHAR},
+      u_tel = #{uTel,jdbcType=VARCHAR},
+      u_password = #{uPassword,jdbcType=VARCHAR},
+      u_status = #{uStatus,jdbcType=INTEGER},
+      u_birthday = #{uBirthday,jdbcType=DATE},
+      u_sex = #{uSex,jdbcType=BIT},
+      u_create_time = #{uCreateTime,jdbcType=TIMESTAMP},
+      u_update_time = #{uUpdateTime,jdbcType=TIMESTAMP},
+      u_device_id = #{uDeviceId,jdbcType=VARCHAR},
+      u_device_type = #{uDeviceType,jdbcType=INTEGER},
+      u_deleted = #{uDeleted,jdbcType=BIT},
+      u_im = #{uIm,jdbcType=VARCHAR},
+      u_token = #{uToken,jdbcType=VARCHAR}
+    where user_id = #{userId,jdbcType=INTEGER}
   </update>
 </mapper>

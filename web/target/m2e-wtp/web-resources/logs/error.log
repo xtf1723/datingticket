@@ -1,0 +1,1 @@
+[http-nio-8080-exec-1] ERROR com.yinghai.datingticket.aop.AccessTokenAop - time:2018-03-28 05:04:48 Exception:UserController/getUser msg:org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.yinghai.datingticket.common.dao.UserMapper.selectByPrimaryKey

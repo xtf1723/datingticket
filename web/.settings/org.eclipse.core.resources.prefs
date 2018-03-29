@@ -1,3 +1,6 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/yinghai/datingticket/aop/AccessTokenAop.java=UTF-8
+encoding//src/main/java/com/yinghai/datingticket/shiro/RetryLimitHashedCredentialsMatcher.java=UTF-8
+encoding//src/main/java/com/yinghai/datingticket/shiro/UserRealm.java=UTF-8
 encoding//src/main/resources/jdbc/jdbc.properties=UTF-8
+encoding/<project>=UTF-8
